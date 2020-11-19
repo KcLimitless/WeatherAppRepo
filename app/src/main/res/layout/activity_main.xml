@@ -11,11 +11,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Gießen"
-        android:layout_marginTop="25dp"
-        android:textSize="20sp"/>
+        android:text="Fulda"
+        android:textStyle="bold"
+        android:layout_marginTop="40dp"
+        android:textSize="22sp"/>
 
     <ScrollView
+        android:id="@+id/base_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/city_name"
@@ -24,43 +26,53 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp">
 
             <TextView
                 android:id="@+id/temp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="0"
                 android:textSize="80sp"
                 android:gravity="center"
                 android:layout_marginTop="20dp"/>
 
             <TextView
+                android:id="@+id/degree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/temp"
                 android:layout_alignTop="@+id/temp"
                 android:layout_marginTop="15dp"
-                android:textSize="40sp"
-                android:text="º"/>
+                android:text="@string/degree"
+                android:visibility="invisible"
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/weather_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/temp"
-                android:text="Cloudy"
                 android:layout_marginTop="20dp"
                 android:layout_centerHorizontal="true"
                 android:textSize="20sp"/>
+
+            <TextView
+                android:id="@+id/feels_like"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textSize="18sp"
+                android:layout_below="@+id/weather_desc"
+                android:layout_centerHorizontal="true"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/daily_temp"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:layout_below="@id/weather_desc"
-                android:layout_marginTop="20dp"
+                android:layout_below="@id/feels_like"
+                android:layout_marginTop="30dp"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"/>
 
@@ -71,39 +83,38 @@
                 android:layout_below="@+id/daily_temp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="10dp">
+                android:layout_marginTop="30dp">
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:alpha="0.2"
-                    android:background="@color/colorPrimary" />
+                    android:background="@color/colorPrimary"/>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/tom_date"
+                        android:id="@+id/date_1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Tomorrow, Nov 18"/>
+                        android:layout_centerVertical="true" />
 
                     <ImageView
+                        android:id="@+id/date_1_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@drawable/ic_cloudy"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_1_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -118,26 +129,25 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/next_tom_date"
+                        android:id="@+id/date_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Thur, Nov 19"/>
+                        android:layout_centerVertical="true" />
 
                     <ImageView
+                        android:id="@+id/date_2_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@color/colorPrimary"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_2_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -155,23 +165,22 @@
                         android:id="@+id/date_3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Fri, Nov 20"/>
+                        android:layout_centerVertical="true"/>
 
                     <ImageView
+                        android:id="@+id/date_3_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@color/colorPrimary"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_3_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -189,23 +198,22 @@
                         android:id="@+id/date_4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Sat, Nov 21"/>
+                        android:layout_centerVertical="true"/>
 
                     <ImageView
+                        android:id="@+id/date_4_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@color/colorPrimary"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_4_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -223,23 +231,22 @@
                         android:id="@+id/date_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Sun, Nov 22"/>
+                        android:layout_centerVertical="true" />
 
                     <ImageView
+                        android:id="@+id/date_5_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@color/colorPrimary"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_5_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -257,23 +264,22 @@
                         android:id="@+id/date_6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:text="Mon, Nov 23"/>
+                        android:layout_centerVertical="true"/>
 
                     <ImageView
+                        android:id="@+id/date_6_image"
                         android:layout_width="50dp"
                         android:layout_height="50dp"
-                        android:src="@color/colorPrimary"
                         android:layout_centerHorizontal="true"
                         android:padding="5dp"
-                        android:contentDescription="Image"/>
+                        android:contentDescription="@string/image"/>
 
                     <TextView
+                        android:id="@+id/date_6_weather"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:text="12º/7º"/>
+                        android:layout_alignParentEnd="true" />
 
                 </RelativeLayout>
 
@@ -287,6 +293,5 @@
 
         </RelativeLayout>
     </ScrollView>
-
 
 </RelativeLayout>
