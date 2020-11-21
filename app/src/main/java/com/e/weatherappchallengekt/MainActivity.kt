@@ -8,6 +8,7 @@ import android.location.Geocoder
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -30,6 +31,7 @@ import java.util.*
 import androidx.lifecycle.Observer
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import java.lang.Exception
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 import kotlin.text.Typography.degree
@@ -47,24 +49,30 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         tempUnit = getSharedPreferences(appPreferences, Context.MODE_PRIVATE)
-            .getString("TempUnit", "metric").toString()
+                .getString("TempUnit", "metric").toString()
 
-        var lat: Double?
-        var lon: Double?
-        var city: String?
+
+        val lon:Double?
+        val lat:Double?
+        val city:String?
+
         try {
             val loc = getCurrentCity()
             lon = loc.first
-            lat =loc.second
+            lat = loc.second
             city = loc.third
             locations.add(Triple(lat!!, lon!!, city!!))
+
             val stringLocation = getSharedPreferences(appPreferences, Context.MODE_PRIVATE)
-                .getString(locationPref, "metric").toString()
-            val type = object : TypeToken<List<Triple<Double, Double, String>>?>() {}.getType()
+                    .getString(locationPref, "[]").toString()
+            val type = object : TypeToken<List<Triple<Double, Double, String>>?>() {}.type
             val savedLocations = Gson().fromJson<List<Triple<Double, Double, String>>>(stringLocation, type)
             locations.addAll(savedLocations)
-        } catch (e: Exception) {
-            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+
+            retrieveWeather(lat, lon, city, tempUnit)
+        }
+        catch (ex: Exception){
+            Log.d("Spark", ex.toString())
         }
 
 

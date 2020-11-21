@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="@string/location"
+        android:gravity="center_vertical"
+        android:id="@+id/location_name"
+        android:paddingStart="5dp"
+        tools:ignore="RtlSymmetry" />
+
+    <View
+        android:layout_below="@id/location_name"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:alpha="0.2"
+        android:background="@color/colorPrimary"/>
+
+</RelativeLayout>
