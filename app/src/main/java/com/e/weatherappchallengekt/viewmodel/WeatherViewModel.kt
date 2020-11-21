@@ -1,5 +1,6 @@
 package com.e.weatherappchallengekt.viewmodel
 
+import android.location.Location
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,10 @@ class WeatherViewModel : ViewModel() {
         mRepo!!.getLocationWeatherInfo(lat, lon, units)
         isFetchCompleted = mRepo!!.isFetching
 
+    }
+
+    fun getLocation(location:String): LiveData<Location>? {
+        return mRepo!!.getLocation(location)
     }
 
     fun getWeather(): LiveData<WeatherInfo>? {

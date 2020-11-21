@@ -10,6 +10,7 @@ import android.location.LocationManager
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.ViewModelProvider
@@ -27,27 +28,45 @@ import java.time.ZoneId
 import java.time.format.TextStyle
 import java.util.*
 import androidx.lifecycle.Observer
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import kotlin.collections.ArrayList
 import kotlin.math.roundToInt
 import kotlin.text.Typography.degree
 
 class MainActivity : AppCompatActivity() {
     private var mAdapter: HourlyAdapter? = null
+    val appPreferences = "AppPreferences"
+    private val locationPref = "Locations"
+    lateinit var tempUnit:String
+    var locations = ArrayList<Triple<Double, Double, String>>()
+    lateinit var weatherViewModel:WeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val locations = ArrayList<Triple<Double, Double, String>>()
+        tempUnit = getSharedPreferences(appPreferences, Context.MODE_PRIVATE)
+            .getString("TempUnit", "metric").toString()
 
-        val (lon, lat, city) = getCurrentCity()
+        var lat: Double?
+        var lon: Double?
+        var city: String?
+        try {
+            val loc = getCurrentCity()
+            lon = loc.first
+            lat =loc.second
+            city = loc.third
+            locations.add(Triple(lat!!, lon!!, city!!))
+            val stringLocation = getSharedPreferences(appPreferences, Context.MODE_PRIVATE)
+                .getString(locationPref, "metric").toString()
+            val type = object : TypeToken<List<Triple<Double, Double, String>>?>() {}.getType()
+            val savedLocations = Gson().fromJson<List<Triple<Double, Double, String>>>(stringLocation, type)
+            locations.addAll(savedLocations)
+        } catch (e: Exception) {
+            Toast.makeText(this, "error", Toast.LENGTH_SHORT).show()
+        }
 
-        locations.add(Triple(lat!!, lon!!, city!!))
-        locations.add(Triple(50.576796, 8.664769, "Gießen"))
-        locations.add(Triple(49.418526, 8.752520, "Heidelberg"))
-        locations.add(Triple(50.42416041005132, 9.421346815605482, "Liverloo"))
-
-        retrieveWeather(lat, lon, city, "metric")
 
         var locIndex = 0
 
@@ -70,6 +89,18 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        settings.setOnClickListener {
+            var settingsFragment = SettingFragment()
+            supportFragmentManager.beginTransaction().add(R.id.base, settingsFragment)
+                .addToBackStack("SettingFragment").commit()
+        }
+
+        add_location.setOnClickListener {
+            var locationFragment = LocationFragment()
+            supportFragmentManager.beginTransaction().add(R.id.base, locationFragment)
+                .addToBackStack("LocationFragment").commit()
+        }
 
     }
 
