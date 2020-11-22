@@ -1,9 +1,10 @@
 package com.e.weatherappchallengekt.viewmodel
 
-import android.location.Location
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.e.weatherappchallengekt.model.Location
 import com.e.weatherappchallengekt.model.WeatherInfo
 import com.e.weatherappchallengekt.repository.WeatherRepository
 

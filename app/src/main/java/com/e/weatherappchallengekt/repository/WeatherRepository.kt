@@ -1,9 +1,9 @@
 package com.e.weatherappchallengekt.repository
 
-import android.location.Location
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.e.weatherappchallengekt.api.Backend
+import com.e.weatherappchallengekt.model.Location
 import com.e.weatherappchallengekt.model.WeatherInfo
 import kotlinx.coroutines.*
 

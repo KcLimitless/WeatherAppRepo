@@ -113,7 +113,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun retrieveWeather(latitude: Double?, longitude: Double?, cityName: String?, units: String){
-        var weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
+        weatherViewModel = ViewModelProvider(this).get(WeatherViewModel::class.java)
 
         weatherViewModel.init(latitude.toString(), longitude.toString(), units)
 

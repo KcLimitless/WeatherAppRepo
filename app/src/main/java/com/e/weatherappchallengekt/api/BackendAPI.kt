@@ -1,6 +1,7 @@
 package com.e.weatherappchallengekt.api
 
-import android.location.Location
+
+import com.e.weatherappchallengekt.model.Location
 import com.e.weatherappchallengekt.model.WeatherInfo
 import retrofit2.Response
 import retrofit2.http.GET

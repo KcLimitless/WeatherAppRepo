@@ -8,10 +8,6 @@ class Weather {
     @Expose
     var id: Int? = null
 
-    @SerializedName("main")
-    @Expose
-    var main: String? = null
-
     @SerializedName("description")
     @Expose
     var description: String? = null

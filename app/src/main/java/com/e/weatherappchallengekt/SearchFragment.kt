@@ -11,10 +11,13 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.e.weatherappchallengekt.model.Location
+
+
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_search.*
+import java.util.*
+import androidx.lifecycle.Observer
+import com.e.weatherappchallengekt.model.Location
 
 
 class SearchFragment : Fragment() {
